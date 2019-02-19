@@ -1,6 +1,6 @@
 import asyncio
 import os
-import json
+import pickle
 
 from Functs import cifrar,decifrar
 
@@ -9,8 +9,7 @@ password = "Some password"
 @asyncio.coroutine
 def handle_echo(reader,writer):
     data = yield from reader.read(1024)
-    e = data.decode()
-    mess = json.loads(e)
+    mess = pickle.loads(data)
     texto = decifrar(mess,password) 
     #message = data.decode()
     addr = writer.get_extra_info('peername')

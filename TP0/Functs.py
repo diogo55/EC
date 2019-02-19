@@ -52,15 +52,16 @@ def cifrar(mensagem, passphrase):
 def decifrar(msg, passphrase):
     ciphertext = msg['ciph']
     salt = msg['salt']
-    tag = msg['mc']
+    tag = msg['tag']
     iv = msg['iv']
-    key = passwd(passphrase,salt)
+    key = passwd(bytes(passphrase,'utf-8'),salt)
 
     #gerar mac utilizando a informação recebida e comparar
     if tag == mac(Hash(key),ciphertext):
         #desencriptar
         cipher = Cipher(algorithms.AES(key), modes.CTR(iv), backend=default_backend()).decryptor()
         plaintext = cipher.update(ciphertext) + cipher.finalize()
+        print('Mensagem cifrada:',ciphertext)
         print('Mensagem decifrada:',plaintext)
     else:
         print('Tags diferentes')

@@ -1,6 +1,6 @@
 import asyncio
 import os
-import json
+import pickle
 from Functs import cifrar,decifrar
 
 password = b"Some password"
@@ -10,9 +10,8 @@ def echo_emitter(message, loop):
     reader,writer = yield from asyncio.open_connection('127.0.0.1', 9999, loop=loop)
     crypto = cifrar(message,password)
     print(str(crypto))
-    crypto = json.dumps(str(crypto))
-    e = crypto.encode()
-    writer.write(e)
+    mess = pickle.dumps(crypto)
+    writer.write(mess)
     writer.close()
 
 def run_emitter():
