@@ -4,14 +4,13 @@ import pickle
 
 from Functs import cifrar,decifrar
 
-password = "Some password"
+password = b"Some password"
 
 @asyncio.coroutine
 def handle_echo(reader,writer):
     data = yield from reader.read(1024)
     mess = pickle.loads(data)
     texto = decifrar(mess,password) 
-    #message = data.decode()
     addr = writer.get_extra_info('peername')
     print("%s -> %s" % (texto, addr))
 
