@@ -2,7 +2,7 @@
 
 ### Ex2
 
-No seguinte exercício pretende-se criar uma comunicaçpão privada assíncrona entre um agente Emitter e um agente Receiver com as seguintes propriedades:
+No seguinte exercício pretende-se criar uma comunicação privada assíncrona entre um agente Emitter e um agente Receiver com as seguintes propriedades:
 
     a. Autenticação do criptograma e dos metadados. Usar uma cifra simétrica num dos modos stream cipher
     b. Derivação da chave a partir de uma password usando um KDF
